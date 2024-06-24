@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,10 +8,11 @@ export const metadata = {
   description: "One Place Dashboard for Eco Information",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, aqi }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <div className="wrapper">
+      {children}
+      {aqi}
+    </div>
   );
 }
