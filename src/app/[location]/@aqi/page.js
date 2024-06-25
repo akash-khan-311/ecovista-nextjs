@@ -1,11 +1,8 @@
+import AQIComponent from "@/components/AQIComponent";
 
 const AqiPage = ({params: {location},searchParams: {latitude,longitude}}) => {
     return (
-        <section className=''>
-            <div className=''>
-                Welcome to AqiPage
-            </div>
-        </section>
+        <AQIComponent lat={latitude} lon={longitude}/>
     )
 }
 export default AqiPage;

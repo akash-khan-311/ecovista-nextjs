@@ -1,11 +1,8 @@
+import WindComponent from "@/components/WindComponent";
 
-const WindPage = () => {
+const WindPage = ({params: {location},searchParams: {latitude,longitude}}) => {
     return (
-        <section className=''>
-            <div className=''>
-                Welcome to WindPage
-            </div>
-        </section>
+        <WindComponent lat={latitude} lon={longitude}/>
     )
 }
 export default WindPage;

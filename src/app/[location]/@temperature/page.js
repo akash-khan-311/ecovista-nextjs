@@ -1,11 +1,8 @@
+import TemperatureComponent from "@/components/TemperatureComponent";
 
-const TemperaturePage = () => {
+const TemperaturePage = ({params: {location},searchParams: {latitude,longitude}}) => {
     return (
-        <section className=''>
-            <div className=''>
-                Welcome to TemperaturePage
-            </div>
-        </section>
+        <TemperatureComponent lat={latitude} lon={longitude} />
     )
 }
 export default TemperaturePage;
