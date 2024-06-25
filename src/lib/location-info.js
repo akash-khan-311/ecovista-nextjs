@@ -1,51 +1,49 @@
-export const getLocationData = async (lat, lon) => {
+export const getLocationData = async (lat,lon) => {
   try {
-    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}`);
+    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${parseInt(lat)}&longitude=${parseFloat(lon)}`);
     const data = await response.json();
+    console.log(data)
     return data;
-  } catch (error) {
-    console.log(error.message);
+  } catch (e) {
+    console.error('error is location =========> ',e);
   }
 };
 
-
 export const getLocationLatLongList = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/api/location`);
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.error(e.message);
-    }
-}
-
-export const getLocationLatLong = async (locationName) => {
-    try {
-        const response = await fetch(
-            `http://localhost:3000/api/location/${locationName}`
-        );
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.error(e.message);
-    }
+  try {
+    const response = await fetch(`http://localhost:3000/api/location`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e.message);
+  }
 };
 
-
+export const getLocationLatLong = async (locationName) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/location/${locationName}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e.message);
+  }
+};
 
 export const getResolvedLatLong = async (location, lat, lon) => {
-    console.log(location, lat, lon);
-    if (lat && lon) {
-        return { lat, lon };
-    }
 
-    const locationLatlong = await getLocationLatLong(location);
-    console.log(locationLatlong);
+  if (lat && lon) {
+    return { lat, lon };
+  }
 
-    if (locationLatlong.latitude && locationLatlong.longitude) {
-        const lat = locationLatlong.latitude;
-        const lon = locationLatlong.longitude;
+  const locationLatlong = await getLocationLatLong(location);
+  console.log(locationLatlong);
 
-        return { lat, lon };
-    }
+  if (locationLatlong.latitude && locationLatlong.longitude) {
+    const lat = locationLatlong.latitude;
+    const lon = locationLatlong.longitude;
+
+    return { lat, lon };
+  }
 };

@@ -1,6 +1,6 @@
-import { getLocation } from "./location-util";
+import { getLocations } from "./location-util";
 
 export const GET = () => {
-  const locationData = getLocation();
+  const locationData = getLocations();
   return Response.json(locationData);
 };

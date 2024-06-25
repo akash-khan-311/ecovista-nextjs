@@ -1,8 +1,22 @@
-const LocationPage = () => {
-  return (
-    <section className="">
-      <div className="">Welcome to LocationPage</div>
-    </section>
-  );
+import LocationInfo from "@/components/LocationInfo";
+import NoLocationInfo from "@/components/NoLocationInfo";
+import { getResolvedLatLong } from "@/lib/location-info";
+
+const LocationPage = async ({
+  params: { location },
+  searchParams: { latitude, longitude },
+}) => {
+  const resolved = await getResolvedLatLong(location, latitude, longitude);
+
+  if (resolved?.lat && resolved?.lon) {
+    return (
+      <LocationInfo
+        lat={parseFloat(resolved.lat)}
+        lon={parseFloat(resolved.lon)}
+      />
+    );
+  } else {
+    return <NoLocationInfo />;
+  }
 };
 export default LocationPage;
