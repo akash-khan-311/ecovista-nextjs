@@ -1,5 +1,5 @@
 
-const AqiPage = () => {
+const AqiPage = ({params: {location},searchParams: {latitude,longitude}}) => {
     return (
         <section className=''>
             <div className=''>
